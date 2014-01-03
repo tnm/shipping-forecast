@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
 
   s.authors  = "Ted Nyman"
   s.homepage = "https://github.com/tnm/shipping-forecast"
-  s.files       = ["lib/shipping_forecast.rb"]
+  s.files    = ["lib/shipping_forecast.rb"]
   s.license  = "MIT"
 
   s.add_dependency 'mechanize'
