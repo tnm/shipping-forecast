@@ -47,13 +47,11 @@ class ShippingForecast
       location = area.search("h2").text
 
       # Warnings, if any
+      warning = OpenStruct.new
       warning_detail = area.search(".warning-detail")
-      if warning_detail
-        warning = OpenStruct.new
-        warning[:title]   = warning_detail.search("strong").text.gsub(':', '')
-        warning[:issued]  = warning_detail.search(".issued").text
-        warning[:summary] = warning_detail.search(".summary").text
-      end
+      warning[:title]   = warning_detail.search("strong").text.gsub(':', '')
+      warning[:issued]  = warning_detail.search(".issued").text
+      warning[:summary] = warning_detail.search(".summary").text
 
       # Build the hash
       area_hash = OpenStruct.new
