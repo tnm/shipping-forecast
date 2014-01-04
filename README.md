@@ -1,10 +1,8 @@
 shipping forecast
 ==================
 
-This is a simple Ruby library for parsing the BBC's [public shipping
-forecast](http://www.bbc.co.uk/weather/coast_and_sea/shipping_forecast).
-
-It requires [mechanize](https://github.com/sparklemotion/mechanize).
+This is a simple Ruby library for accessing the BBC's public [Shipping
+Forecast](http://www.bbc.co.uk/weather/coast_and_sea/shipping_forecast).
 
 Usage
 -------
@@ -14,6 +12,8 @@ Install the gem. You can get one from RubyGems:
 ```
 gem install shipping-forecast
 ```
+
+It uses [mechanize](https://github.com/sparklemotion/mechanize).
 
 The API is straight-forward. You can use `[]` notation to lookup
 a location (like "Viking" or "Plymouth") and get a forecast report:
