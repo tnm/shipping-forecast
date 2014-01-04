@@ -9,7 +9,11 @@ It requires [mechanize](https://github.com/sparklemotion/mechanize).
 Usage
 -------
 
-Install the gem. You can use `bundle install`.
+Install the gem. You can get one from RubyGems:
+
+```
+gem install shipping-forecast
+```
 
 The API is straight-forward. You can use `[]` notation to lookup
 a location (like "Viking" or "Plymouth") and get a forecast report:
