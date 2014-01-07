@@ -7,13 +7,15 @@ class ShippingForecast
   # Public: Returns a hash of OpenStruct objects, each representing a location report.
   #
   # Contents of each report:
-  #   warning    — If there is a warning in effect, returns an OpenStruct object with attributes:
-  #   title      – The title of the warning, e.g., "Gale Warning"
-  #   issued     – When the warning was issued
-  #   summary    – The text summary of the warning
-  #   wind       – The wind conditions
-  #   seas       – The current sea conditions
-  #   visibility – The current visibility report
+  #   warning: If there is a warning in effect, returns an OpenStruct object with attributes:
+  #        title: The title of the warning, e.g., "Gale Warning"
+  #        issued: When the warning was issued
+  #        summary: The text summary of the warning
+  #
+  #   wind: The wind conditions
+  #   seas: The current sea conditions
+  #   weather: The current weather report
+  #   visibility: The current visibility report
   def self.report
     @raw_report ||= new.raw_report
   end
