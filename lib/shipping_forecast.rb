@@ -8,14 +8,14 @@ class ShippingForecast
   #
   # Contents of each report:
   #   warning: If there is a warning in effect, returns an OpenStruct object with attributes:
-  #        title: The title of the warning, e.g., "Gale Warning"
-  #        issued: When the warning was issued
+  #        title:   The title of the warning, e.g., "Gale Warning"
+  #        issued:  When the warning was issued
   #        summary: The text summary of the warning
   #
-  #   wind: The wind conditions
-  #   seas: The current sea conditions
-  #   weather: The current weather report
-  #   visibility: The current visibility report
+  #   wind:       The wind conditions
+  #   seas:       The sea conditions
+  #   weather:    The weather report
+  #   visibility: The visibility report
   def self.report
     @raw_report ||= new.raw_report
   end
@@ -64,18 +64,18 @@ class ShippingForecast
       warning.issued  = warning_detail.search(".issued").text
       warning.summary = warning_detail.search(".summary").text
 
-      # Build the hash
-      area_hash = OpenStruct.new
+      # Build up all the conditions
+      location_report = OpenStruct.new
       breakdown  = area.search("ul").children.search("span")
 
-      area_hash.warning    = warning
-      area_hash.location   = location
-      area_hash.wind       = breakdown[0].text
-      area_hash.seas       = breakdown[1].text
-      area_hash.weather    = breakdown[2].text
-      area_hash.visibility = breakdown[3].text
+      location_report.warning    = warning
+      location_report.location   = location
+      location_report.wind       = breakdown[0].text
+      location_report.seas       = breakdown[1].text
+      location_report.weather    = breakdown[2].text
+      location_report.visibility = breakdown[3].text
 
-      locations[location] = area_hash
+      locations[location] = location_report
     end
 
     @data = locations
