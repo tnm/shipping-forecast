@@ -40,6 +40,7 @@ class ShippingForecast
     @data  = nil
   end
 
+  # Return a raw weather report for all locations
   def raw_report
     build_data unless @built
     @data
