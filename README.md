@@ -25,7 +25,7 @@ viking = ShippingForecast["Viking"]
 => #<OpenStruct warning=#<OpenStruct title="Gale Warning", issued="Gale warning issued 2 January 15:47 UTC", summary="Southeasterly gale force 8, increasing severe gale force 9 later">, location="Viking", wind="Southerly or southeasterly 7 to severe gale 9.", seas="Rough or very rough, occasionally high later.", weather="Rain or squally showers.", visibility="Good, occasionally poor.">
 ```
 
-This gives you an OpenStruct object with the following attributes:
+This gives you an OpenStruct object with these attributes:
 
 * **warning** — If there is a warning in effect, returns an OpenStruct
 object with attributes:
@@ -33,7 +33,7 @@ object with attributes:
    * **issued** – When the warning was issued
    * **summary** – The text summary of the warning
 
-* **wind** – The wind conditions
+* **wind** – The wind conditions, with degree and speed
 
 * **seas** – The current sea conditions
 
@@ -68,7 +68,6 @@ tyne.seas
 tyne.visibility
 => "Good, occasionally poor."
 ```
-
 
 The content of the Shipping Forecast itself is copyright of the BBC. This
 library is MIT licensed.
