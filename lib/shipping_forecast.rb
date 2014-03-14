@@ -40,7 +40,7 @@ class ShippingForecast
     @data  = nil
   end
 
-  # Return a raw weather report for all locations
+  # Return a weather report for all locations
   def raw_report
     build_data unless @built
     @data
@@ -48,6 +48,7 @@ class ShippingForecast
 
   private
 
+  # Parse data from the BBC website to build the reports
   def build_data
     agent = Mechanize.new
     page = agent.get(URL)
