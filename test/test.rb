@@ -51,4 +51,13 @@ class ShippingForecastTest < Test::Unit::TestCase
   def test_all_is_same_as_report
     assert_equal ShippingForecast.report, ShippingForecast.all
   end
+
+  def test_report_includes_wind
+    assert_not_nil ShippingForecast["Viking"].wind
+  end
+
+  def test_report_includes_weather
+    assert_not_nil ShippingForecast["Viking"].weather
+  end
+
 end
