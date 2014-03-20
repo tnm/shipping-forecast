@@ -67,4 +67,8 @@ class ShippingForecastTest < Test::Unit::TestCase
   def test_report_includes_visibility
     assert_not_nil ShippingForecast["Viking"].visibility
   end
+
+  def test_report_warning_is_an_open_struct
+    assert ShippingForecast["Viking"].warning.is_a?(OpenStruct)
+  end
 end
