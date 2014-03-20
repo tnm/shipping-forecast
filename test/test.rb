@@ -2,7 +2,6 @@ require "test/unit"
 require "./lib/shipping_forecast"
 
 class ShippingForecastTest < Test::Unit::TestCase
-
   LOCATIONS =
     ["Bailey",
      "Biscay",
@@ -40,8 +39,10 @@ class ShippingForecastTest < Test::Unit::TestCase
     assert ShippingForecast.report.is_a?(Hash)
   end
 
-  def test_report_includes_viking
-    assert_not_nil ShippingForecast["Viking"]
+  def test_report_includes_each_location
+    LOCATIONS.each do |location|
+      assert_not_nil ShippingForecast[location]
+    end
   end
 
   def test_locations_shows_all_locations
