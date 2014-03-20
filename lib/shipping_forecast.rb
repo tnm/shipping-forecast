@@ -48,13 +48,14 @@ class ShippingForecast
 
   private
 
-  # Parse data from the BBC website to build the reports
+  # Parse data from the BBC website to build the reports.
   def build_data
     agent = Mechanize.new
     page = agent.get(URL)
 
     locations = {}
 
+    # For each location...
     1.upto(31) do |i|
       area = page.search("#area-#{i}")
       location = area.search("h2").text
@@ -62,6 +63,8 @@ class ShippingForecast
       # Warnings, if any
       warning = OpenStruct.new
       warning_detail = area.search(".warning-detail")
+
+      # Breakout the particular warnings
       warning.title   = warning_detail.search("strong").text.gsub(':', '')
       warning.issued  = warning_detail.search(".issued").text
       warning.summary = warning_detail.search(".summary").text
@@ -77,6 +80,7 @@ class ShippingForecast
       location_report.weather    = breakdown[2].text
       location_report.visibility = breakdown[3].text
 
+      # Set the report for this location to the locations hash
       locations[location] = location_report
     end
 
