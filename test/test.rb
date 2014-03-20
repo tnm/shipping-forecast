@@ -52,6 +52,10 @@ class ShippingForecastTest < Test::Unit::TestCase
     assert_equal ShippingForecast.report, ShippingForecast.all
   end
 
+  def test_report_includes_seas
+    assert_not_nil ShippingForecast["Viking"].seas
+  end
+
   def test_report_includes_wind
     assert_not_nil ShippingForecast["Viking"].wind
   end
@@ -60,4 +64,7 @@ class ShippingForecastTest < Test::Unit::TestCase
     assert_not_nil ShippingForecast["Viking"].weather
   end
 
+  def test_report_includes_visibility
+    assert_not_nil ShippingForecast["Viking"].visibility
+  end
 end
