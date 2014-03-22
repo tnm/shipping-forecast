@@ -52,6 +52,16 @@ ShippingForecast.locations
 => ["Bailey", "Biscay", "Cromarty", "Dogger", "Dover", "Faeroes", "Fair Isle", "Fastnet", "Fisher", "FitzRoy", "Forth", "Forties", "German Bight", "Hebrides", "Humber", "Irish Sea", "Lundy", "Malin", "North Utsire", "Plymouth", "Portland", "Rockall", "Shannon", "Sole", "South Utsire", "Southeast Iceland", "Thames", "Trafalgar", "Tyne", "Viking", "Wight"]
 ```
 
+To run the tests run:
+
+```
+rake
+```
+
+Note that the unit tests do make HTTP requests to the BBC's website.
+This is to verify that the actual structure of the BBC's Shipping
+Forecast will still be parsed correctly by this program.
+
 Example
 ---------
 
