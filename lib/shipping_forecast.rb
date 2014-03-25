@@ -2,6 +2,22 @@ require 'mechanize'
 require 'ostruct'
 
 class ShippingForecast
+
+  # Potential connectivity errors
+  HTTP_ERRORS = [
+    EOFError,
+    Errno::ECONNRESET,
+    Errno::EINVAL,
+    Net::HTTPBadResponse,
+    Net::HTTPHeaderSyntaxError,
+    Net::ProtocolError,
+    SocketError,
+    Timeout::Error
+  ]
+
+  # Unique error class
+  class ConnectionToBBCError < Exception; end
+
   URL = "http://www.bbc.co.uk/weather/coast_and_sea/shipping_forecast"
 
   # Public: Returns a hash of OpenStruct objects, each representing a location report.
@@ -51,7 +67,13 @@ class ShippingForecast
   # Parse data from the BBC website to build the reports.
   def build_data
     agent = Mechanize.new
-    page = agent.get(URL)
+
+    # Raise an particular exception on connectivity issues
+    begin
+      page = agent.get(URL)
+    rescue *HTTP_ERRORS => e
+      raise ConnectionToBBCError, e
+    end
 
     locations = {}
 
