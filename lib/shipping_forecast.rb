@@ -4,7 +4,7 @@ require 'ostruct'
 class ShippingForecast
 
   # Potential connectivity errors
-  HTTP_ERRORS = [
+  CONNECTION_ERRORS = [
     EOFError,
     Errno::ECONNRESET,
     Errno::EINVAL,
@@ -71,7 +71,7 @@ class ShippingForecast
     # Raise an particular exception on connectivity issues
     begin
       page = agent.get(URL)
-    rescue *HTTP_ERRORS => e
+    rescue *CONNECTION_ERRORS => e
       raise ConnectionToBBCError, e
     end
 
