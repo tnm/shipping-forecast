@@ -65,6 +65,12 @@ class ShippingForecastTest < Test::Unit::TestCase
     end
   end
 
+  def test_report_includes_wind_number
+    LOCATIONS.each do |location|
+      assert /[0-9]/ =~ ShippingForecast[location].wind
+    end
+  end
+
   def test_report_includes_weather
     LOCATIONS.each do |location|
       assert_not_nil ShippingForecast[location].weather
