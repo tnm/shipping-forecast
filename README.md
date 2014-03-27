@@ -59,8 +59,8 @@ rake
 ```
 
 Note that the unit tests do make HTTP requests to the BBC's website.
-This is to verify that the actual structure of the BBC's Shipping
-Forecast will still be parsed correctly by this program.
+This is to verify that the structure of the BBC's Shipping
+Forecast markup will still be parsed correctly by this program.
 
 Example
 ---------

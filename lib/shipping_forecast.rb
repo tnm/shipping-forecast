@@ -16,7 +16,7 @@ class ShippingForecast
   ]
 
   # Unique error class
-  class ConnectionToBBCError < Exception; end
+  class ConnectionToBBCError < StandardError; end
 
   URL = "http://www.bbc.co.uk/weather/coast_and_sea/shipping_forecast"
 
