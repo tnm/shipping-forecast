@@ -28,6 +28,8 @@ class ShippingForecast
   #        issued:  When the warning was issued
   #        summary: The text summary of the warning
   #
+  #        warning is nil if there is no warning
+  #
   #   wind:       The wind conditions
   #   seas:       The sea conditions
   #   weather:    The weather report
@@ -37,29 +39,38 @@ class ShippingForecast
   end
 
   # Public: Returns a forecast for a particular location
+  #
+  # Returns a hash
   def self.[] location
     report[location]
   end
 
   # Public: Returns all forecasts
+  #
+  # Returns an array
   def self.all
     report
   end
 
   # Public: Returns an array of strings of each available location
+  #
+  # Returns an array
   def self.locations
     report.keys.sort
   end
 
-  def initialize
-    @built = false
-    @data  = nil
+  # Public: Return weather reports for any locations with warnings
+  #
+  # Returns an array
+  def self.all_warnings
+    report.select{|_,r| r.warning}.map{|_,v| v}
   end
+
+  def initialize; end
 
   # Return a weather report for all locations
   def raw_report
-    build_data unless @built
-    @data
+    @raw ||= build_data
   end
 
   private
@@ -83,17 +94,26 @@ class ShippingForecast
       location = area.search("h2").text
 
       # Warnings, if any
-      warning = OpenStruct.new
+      warning = nil
       warning_detail = area.search(".warning-detail")
 
-      # Breakout the particular warnings
-      warning.title   = warning_detail.search("strong").text.gsub(':', '')
-      warning.issued  = warning_detail.search(".issued").text
-      warning.summary = warning_detail.search(".summary").text
+      # Search for the warning title. We'll use this to check if there is
+      # a warning at all.
+      warning_title = warning_detail.search("strong").text.gsub(':', '')
+
+      # Check if there is a warning before proceeding
+      if !warning_title.empty?
+        warning = OpenStruct.new
+
+        # Breakout the particular warnings
+        warning.title   = warning_title
+        warning.issued  = warning_detail.search(".issued").text
+        warning.summary = warning_detail.search(".summary").text
+      end
 
       # Build up all the conditions
       location_report = OpenStruct.new
-      breakdown  = area.search("ul").children.search("span")
+      breakdown = area.search("ul").children.search("span")
 
       location_report.warning    = warning
       location_report.location   = location
@@ -106,7 +126,6 @@ class ShippingForecast
       locations[location] = location_report
     end
 
-    @data = locations
-    @built = true
+    locations
   end
 end
