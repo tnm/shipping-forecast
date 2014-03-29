@@ -18,7 +18,7 @@ class ShippingForecast
   # Unique error class
   class ConnectionToBBCError < StandardError; end
 
-  URL = "http://www.bbc.co.uk/weather/coast_and_sea/shipping_forecast"
+  URL = "https://www.bbc.com/weather/coast_and_sea/shipping_forecast"
 
   # Public: Returns a hash of OpenStruct objects, each representing a location report.
   #
