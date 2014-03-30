@@ -15,9 +15,10 @@ class ShippingForecast
     Timeout::Error
   ]
 
-  # Unique error class
+  # Unique error class for connection problems
   class ConnectionToBBCError < StandardError; end
 
+  # URL for the Shipping Forecast content
   URL = ENV["SHIPPING_FORECAST_URL"] ||= "https://www.bbc.com/weather/coast_and_sea/shipping_forecast"
 
   # Public: Returns a hash of OpenStruct objects, each representing a location report.
