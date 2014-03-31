@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+
+require 'shipping_forecast'
+
+location = ARGV[0]
+
+def usage
+  puts "forecast <[location name]>"
+end
+
+def pretty_print_forecast(forecast)
+  puts "Location: #{forecast.delete_field('location')}" # print location first
+  forecast.each_pair do |k,v|
+    if k == :warning && forecast.warning # special-case a warning and put it first
+      warning = forecast.warning
+      puts "WARNING: #{warning.title} - Issued: #{warning.issued} - Summary: #{warning.summary}"
+    else
+      puts "#{k.capitalize}: #{v}" if v
+    end
+  end
+  puts # line between each forecast
+end
+
+def pretty_print(reports)
+  forecasts = reports.sort.each.map{|_, v| v} # don't care about the location names here
+  forecasts.each {|f| pretty_print_forecast(f)}
+end
+
+def valid_locations
+  ShippingForecast.locations
+end
+
+if location && valid_locations.include?(location)
+  pretty_print_forecast ShippingForecast[location]
+elsif location
+  puts "Invalid location. Valid locations are: #{valid_locations.join(", ")}"
+else
+  pretty_print ShippingForecast.all
+end
