@@ -64,7 +64,7 @@ class ShippingForecast
   #
   # Returns an array
   def self.all_warnings
-    report.select{|_,r| r.warning}.map{|_,v| v}
+    report.select { |_,r| r.warning }.map { |_,v| v }
   end
 
   def initialize; end
