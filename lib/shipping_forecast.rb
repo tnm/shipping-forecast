@@ -60,7 +60,8 @@ class ShippingForecast
     report.keys.sort
   end
 
-  # Public: Return weather reports for any locations with warnings
+  # Public: Return weather reports just for those locations that have
+  # warnings in effect
   #
   # Returns an array
   def self.all_warnings
@@ -76,11 +77,12 @@ class ShippingForecast
 
   private
 
-  # Parse data from the BBC website to build the reports.
+  # Parse data from the BBC website to build the reports
   def build_data
     agent = Mechanize.new
 
-    # Raise an particular exception on connectivity issues
+    # Raise an particular ConnectionToBBCError exception
+    # on connectivity issues
     begin
       page = agent.get(URL)
     rescue *CONNECTION_ERRORS => e
@@ -98,8 +100,7 @@ class ShippingForecast
       warning = nil
       warning_detail = area.search(".warning-detail")
 
-      # Search for the warning title. We'll use this to check if there is
-      # a warning at all.
+      # Search for the warning title
       warning_title = warning_detail.search("strong").text.gsub(':', '')
 
       # Check if there is a warning before proceeding
@@ -123,7 +124,7 @@ class ShippingForecast
       location_report.weather    = breakdown[2].text
       location_report.visibility = breakdown[3].text
 
-      # Set the report for this location to the locations hash
+      # Set the report for this location in the locations hash
       locations[location] = location_report
     end
 
