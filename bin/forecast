@@ -22,8 +22,8 @@ def pretty_print_forecast(forecast)
 end
 
 def pretty_print(reports)
-  forecasts = reports.sort.each.map{|_, v| v} # don't care about the location names here
-  forecasts.each {|f| pretty_print_forecast(f)}
+  forecasts = reports.sort.each.map { |_, v| v } # we don't care about the location names here
+  forecasts.each { |f| pretty_print_forecast(f) }
 end
 
 def valid_locations
