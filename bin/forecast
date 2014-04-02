@@ -9,20 +9,20 @@ def usage
 end
 
 def pretty_print_forecast(forecast)
-  puts "Location: #{forecast.delete_field('location')}" # print location first
-  forecast.each_pair do |k,v|
-    if k == :warning && forecast.warning # special-case a warning and put it first
-      warning = forecast.warning
-      puts "WARNING: #{warning.title} - Issued: #{warning.issued} - Summary: #{warning.summary}"
-    else
-      puts "#{k.capitalize}: #{v}" if v
-    end
+  puts "Location: #{forecast.delete(:location)}"
+
+  # print warning if there is one
+  if warning = forecast.delete(:warning)
+    puts "WARNING: #{warning[:title]} - Issued: #{warning[:issued]} - Summary: #{warning[:summary]}"
   end
-  puts # line between each forecast
+
+  # print the rest of the forecast reports, and put a line between each report
+  forecast.each { |k,v| puts "#{k.capitalize}: #{v}" if v }
+  puts
 end
 
 def pretty_print(reports)
-  forecasts = reports.sort.each.map { |_, v| v } # we don't care about the location names here
+  forecasts = reports.sort.each.map { |_, v| v } # we don't care about the location keys here
   forecasts.each { |f| pretty_print_forecast(f) }
 end
 

@@ -22,22 +22,23 @@ a location (like "Viking" or "Plymouth") and get a forecast report:
 require 'shipping_forecast'
 
 viking = ShippingForecast["Viking"]
-=> #<OpenStruct warning=#<OpenStruct title="Gale Warning", issued="Gale warning issued 2 January 15:47 UTC", summary="Southeasterly gale force 8, increasing severe gale force 9 later">, location="Viking", wind="Southerly or southeasterly 7 to severe gale 9.", seas="Rough or very rough, occasionally high later.", weather="Rain or squally showers.", visibility="Good, occasionally poor.">
+=> {:warning=>nil, :location=>"Viking", :wind=>"Variable 3 or 4 until later in west, otherwise southerly 4 or 5.", :seas=>"Slight or moderate.",
+:weather=>"Occasional rain or drizzle.", :visibility=>"Good occasionally poor."}
 ```
 
-This gives you an OpenStruct object with these attributes:
+This gives you an hash with these keys:
 
-* **warning** — If there is a warning in effect, returns an OpenStruct
-object with attributes:
-   * **title** – The title of the warning, e.g., "Gale Warning"
-   * **issued** – When the warning was issued
-   * **summary** – The text summary of the warning
+* **:warning** — If there is a warning in effect, returns an hash
+object with keys:
+   * **:title** – The title of the warning, e.g., "Gale Warning"
+   * **:issued** – When the warning was issued
+   * **:summary** – The text summary of the warning
 
-* **wind** – The wind conditions, with degree and speed
+* **:wind** – The wind conditions, with degree and speed
 
-* **seas** – The current sea conditions
+* **:seas** – The current sea conditions
 
-* **visibility** – The current visibility report
+* **:visibility** – The current visibility report
 
 You can also get all the forecasts using:
 
@@ -67,15 +68,15 @@ Example
 
 ```ruby
 > tyne = ShippingForecast["Tyne"]
-> tyne.warning.summary
+> tyne[:warning][:summary]
 => "Gale force 8 veering southerly and increasing severe gale force 9 later"
-> tyne.wind
+> tyne[:wind]
 => "South or southeast veering southwest, 6 to gale 8, occasionally severe gale 9."
-tyne.weather
+tyne[:weather]
 => "Rain then squally showers."
-tyne.seas
+tyne[:seas]
 => "Moderate or rough, becoming rough or very rough."
-tyne.visibility
+tyne[:visibility]
 => "Good, occasionally poor."
 ```
 

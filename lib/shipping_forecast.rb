@@ -21,10 +21,10 @@ class ShippingForecast
   # URL for the Shipping Forecast content
   URL = ENV["SHIPPING_FORECAST_URL"] ||= "https://www.bbc.com/weather/coast_and_sea/shipping_forecast"
 
-  # Public: Returns a hash of OpenStruct objects, each representing a location report.
+  # Public: Returns a hash of hash reports, each representing a location report.
   #
   # Contents of each report:
-  #   warning: If there is a warning in effect, returns an OpenStruct object with attributes:
+  #   warning: If there is a warning in effect, returns an hash with symbol keys:
   #        title:   The title of the warning, e.g., "Gale Warning"
   #        issued:  When the warning was issued
   #        summary: The text summary of the warning
@@ -65,7 +65,7 @@ class ShippingForecast
   #
   # Returns an array
   def self.all_warnings
-    report.select { |_,r| r.warning }.map { |_,v| v }
+    report.select { |_,r| r[:warning] }.map { |_,v| v }
   end
 
   def initialize; end
@@ -105,24 +105,24 @@ class ShippingForecast
 
       # Check if there is a warning before proceeding
       if !warning_title.empty?
-        warning = OpenStruct.new
+        warning = {}
 
         # Breakout the particular warnings
-        warning.title   = warning_title
-        warning.issued  = warning_detail.search(".issued").text
-        warning.summary = warning_detail.search(".summary").text
+        warning[:title]   = warning_title
+        warning[:issued]  = warning_detail.search(".issued").text
+        warning[:summary] = warning_detail.search(".summary").text
       end
 
       # Build up all the conditions
-      location_report = OpenStruct.new
+      location_report = {}
       breakdown = area.search("ul").children.search("span")
 
-      location_report.warning    = warning
-      location_report.location   = location
-      location_report.wind       = breakdown[0].text
-      location_report.seas       = breakdown[1].text
-      location_report.weather    = breakdown[2].text
-      location_report.visibility = breakdown[3].text
+      location_report[:warning]    = warning
+      location_report[:location]   = location
+      location_report[:wind]       = breakdown[0].text
+      location_report[:seas]       = breakdown[1].text
+      location_report[:weather]    = breakdown[2].text
+      location_report[:visibility] = breakdown[3].text
 
       # Set the report for this location in the locations hash
       locations[location] = location_report

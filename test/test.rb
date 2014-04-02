@@ -55,37 +55,37 @@ class ShippingForecastTest < Test::Unit::TestCase
 
   def test_report_includes_seas
     LOCATIONS.each do |location|
-      assert_not_nil ShippingForecast[location].seas
+      assert_not_nil ShippingForecast[location][:seas]
     end
   end
 
   def test_report_includes_wind
     LOCATIONS.each do |location|
-      assert_not_nil ShippingForecast[location].wind
+      assert_not_nil ShippingForecast[location][:wind]
     end
   end
 
   def test_report_includes_wind_number
     LOCATIONS.each do |location|
-      assert /[0-9]/ =~ ShippingForecast[location].wind
+      assert /[0-9]/ =~ ShippingForecast[location][:wind]
     end
   end
 
   def test_report_includes_weather
     LOCATIONS.each do |location|
-      assert_not_nil ShippingForecast[location].weather
+      assert_not_nil ShippingForecast[location][:weather]
     end
   end
 
   def test_report_includes_visibility
     LOCATIONS.each do |location|
-      assert_not_nil ShippingForecast[location].visibility
+      assert_not_nil ShippingForecast[location][:visibility]
     end
   end
 
-  def test_report_warning_is_an_open_struct
+  def test_report_warning_is_a_hash
     LOCATIONS.each do |location|
-      assert_not_nil ShippingForecast[location].warning.is_a?(OpenStruct)
+      assert_not_nil ShippingForecast[location][:warning].is_a?(Hash)
     end
   end
 end
