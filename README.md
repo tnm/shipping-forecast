@@ -69,6 +69,7 @@ get a specific forecast.
 
 ```
 bin/forecast <[location name]>
+```
 
 Example
 ---------
