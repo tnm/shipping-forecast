@@ -26,9 +26,9 @@ viking = ShippingForecast["Viking"]
 :weather=>"Occasional rain or drizzle.", :visibility=>"Good occasionally poor."}
 ```
 
-This gives you an hash with these keys:
+This gives you a hash with these keys:
 
-* **:warning** — If there is a warning in effect, returns an hash
+* **:warning** — If there is a warning in effect, returns a hash
 object with keys:
    * **:title** – The title of the warning, e.g., "Gale Warning"
    * **:issued** – When the warning was issued
@@ -62,6 +62,13 @@ rake
 Note that the unit tests do make HTTP requests to the BBC's website.
 This is to verify that the structure of the BBC's Shipping
 Forecast markup will still be parsed correctly by this program.
+
+There is also a simple script you can use to lookup the forecasts from
+the command line. You can optionally give the name of a location to just
+get a specific forecast.
+
+```
+bin/forecast <[location name]>
 
 Example
 ---------
