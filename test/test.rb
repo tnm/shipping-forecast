@@ -41,7 +41,7 @@ class ShippingForecastTest < Test::Unit::TestCase
 
   def test_report_includes_each_location
     LOCATIONS.each do |location|
-      assert_not_nil ShippingForecast[location]
+      assert_not_nil_nor_empty ShippingForecast[location]
     end
   end
 
@@ -55,13 +55,13 @@ class ShippingForecastTest < Test::Unit::TestCase
 
   def test_report_includes_seas
     LOCATIONS.each do |location|
-      assert_not_nil ShippingForecast[location][:seas]
+      assert_not_nil_nor_empty ShippingForecast[location][:seas]
     end
   end
 
   def test_report_includes_wind
     LOCATIONS.each do |location|
-      assert_not_nil ShippingForecast[location][:wind]
+      assert_not_nil_nor_empty ShippingForecast[location][:wind]
     end
   end
 
@@ -73,19 +73,24 @@ class ShippingForecastTest < Test::Unit::TestCase
 
   def test_report_includes_weather
     LOCATIONS.each do |location|
-      assert_not_nil ShippingForecast[location][:weather]
+      assert_not_nil_nor_empty ShippingForecast[location][:weather]
     end
   end
 
   def test_report_includes_visibility
     LOCATIONS.each do |location|
-      assert_not_nil ShippingForecast[location][:visibility]
+      assert_not_nil_nor_empty ShippingForecast[location][:visibility]
     end
   end
 
-  def test_report_warning_is_a_hash
+  def test_report_warning_is_a_hash_if_warning
     LOCATIONS.each do |location|
-      assert ShippingForecast[location][:warning].is_a?(Hash)
+      assert ShippingForecast[location][:warning].is_a?(Hash) if ShippingForecast[location][:warning]
     end
+  end
+
+  def assert_not_nil_nor_empty(exp, msg=nil)
+    msg = message(msg) { "<#{exp}> expected to not be nil or empty" }
+    assert(!exp.nil? && !exp.empty?, msg)
   end
 end
