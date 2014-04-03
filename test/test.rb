@@ -85,7 +85,7 @@ class ShippingForecastTest < Test::Unit::TestCase
 
   def test_report_warning_is_a_hash
     LOCATIONS.each do |location|
-      assert_not_nil ShippingForecast[location][:warning].is_a?(Hash)
+      assert ShippingForecast[location][:warning].is_a?(Hash)
     end
   end
 end
