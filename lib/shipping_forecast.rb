@@ -1,5 +1,4 @@
 require 'mechanize'
-require 'ostruct'
 
 class ShippingForecast
 
@@ -20,6 +19,8 @@ class ShippingForecast
 
   # URL for the Shipping Forecast content
   URL = ENV["SHIPPING_FORECAST_URL"] ||= "https://www.bbc.com/weather/coast_and_sea/shipping_forecast"
+
+  NUMBER_OF_LOCATIONS = 31
 
   # Public: Returns a hash of hash reports, each representing a location report.
   #
@@ -42,7 +43,7 @@ class ShippingForecast
   # Public: Returns a forecast for a particular location
   #
   # Returns a hash
-  def self.[] location
+  def self.[](location)
     report[location]
   end
 
@@ -85,14 +86,14 @@ class ShippingForecast
     # on connectivity issues
     begin
       page = agent.get(URL)
-    rescue *CONNECTION_ERRORS => e
-      raise ConnectionToBBCError, e
+    rescue *CONNECTION_ERRORS => error
+      raise ConnectionToBBCError, error
     end
 
     locations = {}
 
     # For each location...
-    1.upto(31) do |i|
+    1.upto(NUMBER_OF_LOCATIONS) do |i|
       area = page.search("#area-#{i}")
       location = area.search("h2").text
 
