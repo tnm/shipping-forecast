@@ -5,7 +5,7 @@ require 'shipping_forecast'
 location = ARGV[0]
 
 def usage
-  puts "forecast <[location name]>"
+  puts "usage: ./forecast <[location name]>"
 end
 
 def pretty_print_forecast(forecast)
@@ -33,6 +33,8 @@ end
 if location && valid_locations.include?(location)
   pretty_print_forecast ShippingForecast[location]
 elsif location
+  usage
+  puts
   puts "Invalid location. Valid locations are: #{valid_locations.join(", ")}"
 else
   pretty_print ShippingForecast.all
