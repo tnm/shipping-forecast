@@ -71,14 +71,18 @@ class ShippingForecast
 
   def initialize; end
 
-  # Return a weather report for all locations
+  # Internal: Return a weather report for all locations
+  #
+  # Returns a hash
   def raw_report
     @raw ||= build_data
   end
 
   private
 
-  # Parse data from the BBC website to build the reports
+  # Internal: Parse data from the BBC website to build the reports
+  #
+  # Returns a hash.
   def build_data
     agent = Mechanize.new
 
