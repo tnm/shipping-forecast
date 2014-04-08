@@ -54,7 +54,7 @@ class ShippingForecastTest < Test::Unit::TestCase
   end
 
   def test_report_includes_all_reports
-    assert_equal LOCATIONS.count, ShippingForecast.report.count
+    assert_equal ShippingForecast::NUMBER_OF_LOCATIONS, ShippingForecast.report.count
   end
 
   def test_report_includes_seas
