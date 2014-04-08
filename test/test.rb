@@ -49,8 +49,12 @@ class ShippingForecastTest < Test::Unit::TestCase
     assert_equal LOCATIONS, ShippingForecast.locations
   end
 
-  def test_all_is_same_as_report
+  def test_all_method_is_same_as_report_method
     assert_equal ShippingForecast.report, ShippingForecast.all
+  end
+
+  def test_report_includes_all_reports
+    assert_equal LOCATIONS.count, ShippingForecast.report.count
   end
 
   def test_report_includes_seas
