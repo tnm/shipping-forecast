@@ -31,11 +31,11 @@ def valid_locations
 end
 
 if location && valid_locations.include?(location)
-  pretty_print_forecast ShippingForecast[location]
+  pretty_print_forecast(ShippingForecast[location])
 elsif location
   usage
   puts
   puts "Invalid location. Valid locations are: #{valid_locations.join(", ")}"
 else
-  pretty_print ShippingForecast.all
+  pretty_print(ShippingForecast.all)
 end
