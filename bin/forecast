@@ -4,6 +4,13 @@ require 'shipping_forecast'
 
 location = ARGV[0]
 
+# Example output --
+#
+# Location: Viking
+# Wind: Westerly or southwesterly 4 or 5, occasionally 6, backing southerly 6 or 7.
+# Seas: Moderate, occasionally rough in north.
+# Weather: Showers, rain later.
+# Visibility: Good, becoming moderate later.
 def usage
   puts "usage: ./forecast <[location name]>"
 end
