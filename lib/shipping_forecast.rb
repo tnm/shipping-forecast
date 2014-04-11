@@ -7,6 +7,7 @@ class ShippingForecast
     EOFError,
     Errno::ECONNRESET,
     Errno::EINVAL,
+    Mechanize::ResponseCodeError,
     Net::HTTPBadResponse,
     Net::HTTPHeaderSyntaxError,
     Net::ProtocolError,
