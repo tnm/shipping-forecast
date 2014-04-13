@@ -51,7 +51,7 @@ class ShippingForecast
 
   # Public: Returns all forecasts
   #
-  # Returns an array
+  # Returns a hash
   def self.all
     report
   end
