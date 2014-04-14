@@ -28,6 +28,7 @@ viking = ShippingForecast["Viking"]
 
 This gives you a hash with these keys:
 
+* **:location** - The location name
 * **:warning** — If there is a warning in effect, returns a hash
 object with keys:
    * **:title** – The title of the warning, e.g., "Gale Warning"
