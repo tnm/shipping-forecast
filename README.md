@@ -28,18 +28,18 @@ viking = ShippingForecast["Viking"]
 
 This gives you a hash with these keys:
 
-* **:location** - The location name
-* **:warning** — If there is a warning in effect, returns a hash
+* **`:location`** - The location name
+* **`:warning`** — If there is a warning in effect, returns a hash
 object with keys:
-   * **:title** – The title of the warning, e.g., "Gale Warning"
-   * **:issued** – When the warning was issued
-   * **:summary** – The text summary of the warning
+   * **`:title`** – The title of the warning, e.g., "Gale Warning"
+   * **`:issued`** – When the warning was issued
+   * **`:summary`** – The text summary of the warning
 
-* **:wind** – The wind conditions, with degree and speed
+* **`:wind`** – The wind conditions, with degree and speed
 
-* **:seas** – The current sea conditions
+* **`:seas`** – The current sea conditions
 
-* **:visibility** – The current visibility report
+* **`:visibility`** – The current visibility report
 
 You can also get all the forecasts using:
 
