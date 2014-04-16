@@ -28,7 +28,7 @@ viking = ShippingForecast["Viking"]
 
 This gives you a hash with these keys:
 
-* **`:location`** - The location name
+* **`:location`** — The location name
 * **`:warning`** — If there is a warning in effect, returns a hash
 object with keys:
    * **`:title`** – The title of the warning, e.g., "Gale Warning"
@@ -54,7 +54,7 @@ ShippingForecast.locations
 => ["Bailey", "Biscay", "Cromarty", "Dogger", "Dover", "Faeroes", "Fair Isle", "Fastnet", "Fisher", "FitzRoy", "Forth", "Forties", "German Bight", "Hebrides", "Humber", "Irish Sea", "Lundy", "Malin", "North Utsire", "Plymouth", "Portland", "Rockall", "Shannon", "Sole", "South Utsire", "Southeast Iceland", "Thames", "Trafalgar", "Tyne", "Viking", "Wight"]
 ```
 
-To run the tests run:
+To run the tests:
 
 ```
 rake
