@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name    = 'shipping-forecast'
-  s.version = '0.0.3'
+  s.version = '0.1.0'
   s.summary = "Ruby wrapper for the BBC's shipping forecast"
 
   s.authors  = "Ted Nyman"
