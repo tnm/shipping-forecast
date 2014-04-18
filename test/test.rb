@@ -111,6 +111,24 @@ class ShippingForecastTest < Test::Unit::TestCase
     end
   end
 
+  def test_warning_includes_title_if_warning
+    LOCATIONS.each do |location|
+      assert_not_nil_nor_empty ShippingForecast[location][:warning][:title] if ShippingForecast[location][:warning]
+    end
+  end
+
+  def test_warning_includes_issued_if_warning
+    LOCATIONS.each do |location|
+      assert_not_nil_nor_empty ShippingForecast[location][:warning][:issued] if ShippingForecast[location][:warning]
+    end
+  end
+
+  def test_warning_includes_summary_if_warning
+    LOCATIONS.each do |location|
+      assert_not_nil_nor_empty ShippingForecast[location][:warning][:summary] if ShippingForecast[location][:warning]
+    end
+  end
+
   def assert_not_nil_nor_empty(exp, msg=nil)
     msg = message(msg) { "<#{exp}> expected to not be nil or empty" }
     assert(!exp.nil? && !exp.empty?, msg)
