@@ -26,7 +26,7 @@ viking = ShippingForecast["Viking"]
 :weather=>"Occasional rain or drizzle.", :visibility=>"Good occasionally poor."}
 ```
 
-This gives you a hash with these keys:
+This gives you a hash with these keys (all values are strings): 
 
 * **`:location`** — The location name
 * **`:warning`** — If there is a warning in effect, returns a hash
