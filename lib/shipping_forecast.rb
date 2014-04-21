@@ -26,13 +26,13 @@ class ShippingForecast
   # Public: Returns a hash of hash reports, each representing a location report.
   #
   # Contents of each report:
-  #   warning: If there is a warning in effect, returns an hash with symbol keys.
-  #            All values are strings.
+  #   warning: If there is a warning in effect, this is a hash with symbol keys.
+  #            All values are strings. They keys for warning are:
   #        title:   The title of the warning, e.g., "Gale Warning"
   #        issued:  Time when the warning was issued, e.g., "Gale warning issued 9 April 15:26 UTC"
   #        summary: The text summary of the warning, e.g., "Southerly gale force 8 expected later"
   #
-  #        *warning* is nil if there is no warning
+  #        *warning* is nil if there is no warning in effect.
   #
   #   wind:       The wind conditions
   #   seas:       The sea conditions
