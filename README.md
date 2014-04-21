@@ -47,20 +47,23 @@ You can also get all the forecasts using:
 ShippingForecast.all
 ```
 
-To get a list of all available locations, as strings:
+That returns a hash with keys of location names, so `ShippingForecast.all["Viking"]` is equivalent to
+`ShippingForecast["Viking"]`.
+
+To get a list of all available locations, as an array of strings:
 
 ```ruby
 ShippingForecast.locations
 => ["Bailey", "Biscay", "Cromarty", "Dogger", "Dover", "Faeroes", "Fair Isle", "Fastnet", "Fisher", "FitzRoy", "Forth", "Forties", "German Bight", "Hebrides", "Humber", "Irish Sea", "Lundy", "Malin", "North Utsire", "Plymouth", "Portland", "Rockall", "Shannon", "Sole", "South Utsire", "Southeast Iceland", "Thames", "Trafalgar", "Tyne", "Viking", "Wight"]
 ```
 
-To run the tests:
+To run the tests you can just run:
 
 ```
 rake
 ```
 
-Note that the unit tests do make HTTP requests to the BBC's website.
+Note that the tests do make HTTP requests to the BBC's website.
 This is to verify that the structure of the BBC's Shipping
 Forecast markup will still be parsed correctly by this program.
 
