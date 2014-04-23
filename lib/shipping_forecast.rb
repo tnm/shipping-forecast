@@ -71,7 +71,8 @@ class ShippingForecast
     report.select { |_,r| r[:warning] }.map { |_,v| v }
   end
 
-  def initialize; end
+  def initialize
+  end
 
   # Internal: Return a weather report for all locations
   #
