@@ -39,10 +39,12 @@ end
 
 if location && valid_locations.include?(location)
   pretty_print_forecast(ShippingForecast[location])
+  exit 1
 elsif location
   usage
   puts
   puts "Invalid location. Valid locations are: #{valid_locations.join(", ")}"
+  exit 1
 else
   pretty_print(ShippingForecast.all)
 end
