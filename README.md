@@ -1,7 +1,7 @@
 shipping forecast
 ==================
 
-This is a simple Ruby library for accessing the BBC's public [Shipping
+This is a Ruby library for accessing the BBC's public [Shipping
 Forecast](http://www.bbc.co.uk/weather/coast_and_sea/shipping_forecast).
 
 Usage
