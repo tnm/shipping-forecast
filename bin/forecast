@@ -39,7 +39,7 @@ end
 
 if location && valid_locations.include?(location)
   pretty_print_forecast(ShippingForecast[location])
-  exit 1
+  exit 0
 elsif location
   usage
   puts
